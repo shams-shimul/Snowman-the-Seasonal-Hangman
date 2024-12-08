@@ -1,6 +1,8 @@
 // The keyboard has been rendered for you
 import { renderKeyboard } from '/keyboard'
-document.getElementById('keyboard-container').addEventListener('click', checkGuess)
+const keyboard = document.getElementById('keyboard-container')
+keyboard.addEventListener('click', checkGuess)
+window.addEventListener('keydown', function () { checkGuess(event, true) })
 
 // Some useful elements
 const guessContainer = document.getElementById('guess-container')
@@ -29,13 +31,56 @@ Challenge
 */
 
 // Set the word to guess
-const word = "gift"
+const word = "santa"
 // 6 guesses for the 6 parts of the snowman
 let guesses = 6
+// Track how many letters have been correctly guessed
+let nCorrectGuess = 0
 
+// Insert dashes for each character of the word
+const guessChars = Array.from(word).map((char, pos) => `
+    <span id='pos-${pos}'>-</span>
+`).join('')
+guessContainer.innerHTML = guessChars
 
-function checkGuess() {
-    
+function checkGuess(event, keyPressed = false) {
+  // Check if the game is already over in the beginning, if yes, do nothing
+  if (guesses === 0 || nCorrectGuess === word.length) return
+
+  const selectedLetter = keyPressed ? event.key : event.target.getAttribute('id')
+
+  // Actions when any match is found, including duplicates
+  for (let i = 0; i < word.length; i++) {
+    if (selectedLetter === word.charAt(i)) {
+      ++nCorrectGuess
+      event.target.disabled = 'true'
+      document.getElementById(`pos-${i}`).textContent = selectedLetter.toUpperCase()
+    }
+  }
+
+  // Actions when no match is found
+  if (!word.includes(selectedLetter)) {
+    guesses && --guesses
+    snowmanParts[guesses].classList.add('hide')
+  }
+
+  // If the game is over, run these actions
+  checkIfGameOver()
+}
+
+const checkIfGameOver = () => {
+  if (guesses === 0) {
+    guessContainer.textContent = "You Lose!"
+    keyboard.classList.add('disabled')
+  }
+  if (nCorrectGuess === word.length) {
+    keyboard.classList.add('disabled')
+    guessContainer.textContent = "You Win!"
+    document.querySelector('.sunglasses').classList.remove('hide')
+    for (let i = 0; i < snowmanParts.length; i++) {
+      snowmanParts[i].classList.remove('hide')
+    }
+  }
 }
 
 renderKeyboard()
