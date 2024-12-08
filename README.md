@@ -13,7 +13,12 @@ There will be a list of fun words specific to this festive season from which one
 ### Branches:
 
 - **`main`**: Includes all the changes added to complete the challenges stated in the `index.js` file.
-- **`challenge`**: Includes he initial challenge files.
+- **`challenge`**: Includes the initial challenge files.
+- **`build`**: Includes the final build files. A GitHub Pages site is set-up based on this branch. Check the preview link below:
+
+### Preview
+
+[**Click here to see and play the app in action.**]()
 
 &nbsp;
 

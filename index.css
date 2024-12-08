@@ -12,140 +12,6 @@ body {
 }
 
 #keyboard-container {
-	html,
-	body {
-		margin: 0;
-		padding: 0;
-	}
-
-	body {
-		background-image: url("images/snowflake.png");
-		background-size: 15%;
-		background-color: #d9f7f7;
-		font-family: Verdana, Geneva, Tahoma, sans-serif;
-	}
-
-	#keyboard-container {
-		display: flex;
-		gap: 1px;
-		max-width: 310px;
-		flex-wrap: wrap;
-		margin: 0 auto;
-		justify-content: center;
-	}
-
-	#guess-container {
-		display: flex;
-		border: 2px solid #999;
-		border-radius: 5px;
-		max-width: 330px;
-		min-height: 2em;
-		margin: 1em auto;
-		justify-content: center;
-		align-items: center;
-		gap: 0.5em;
-		background-color: white;
-		font-size: 1.5em;
-	}
-
-	button.letter {
-		padding: 8px;
-		border: none;
-		width: 32px;
-		border-radius: 2px;
-		background-color: #c03a2b;
-		color: white;
-		font-size: 1.2em;
-		font-family: Verdana, Geneva, Tahoma, sans-serif;
-	}
-
-	#keyboard-container.disabled button.letter,
-	button.letter:disabled {
-		background-color: rosybrown;
-		color: gainsboro;
-		cursor: not-allowed;
-	}
-
-	button.letter:not(:disabled):hover,
-	button.letter:not(:disabled):focus {
-		background-color: #f0c419;
-		color: black;
-	}
-
-	button.letter:not(:disabled):active {
-		background-color: #d9f7f7;
-		color: black;
-	}
-
-	button:not(.disabled):focus {
-		outline: none;
-	}
-
-	.guess-char {
-		padding: 12px 0px;
-		font-size: 1.5em;
-		width: 40px;
-		text-align: center;
-	}
-
-	.snowman-container {
-		position: relative;
-		width: 300px;
-		margin: 2em auto 0 auto;
-		height: 300px;
-	}
-
-	.snowman-part {
-		max-width: 300px;
-		position: absolute;
-	}
-
-	.body {
-		bottom: 0;
-	}
-
-	.head {
-		bottom: 145px;
-	}
-
-	.nose {
-		bottom: 170px;
-	}
-
-	.scarf {
-		bottom: 50px;
-	}
-
-	.hat {
-		bottom: 250px;
-	}
-
-	.arm {
-		bottom: 50px;
-	}
-
-	.sunglasses,
-	.puddle {
-		position: absolute;
-	}
-
-	.sunglasses {
-		width: 120px;
-		top: 58px;
-		left: 90px;
-		z-index: 2;
-	}
-
-	.puddle {
-		width: 290px;
-		top: 270px;
-		left: 5px;
-		z-index: -2;
-	}
-
-	.hide {
-		visibility: hidden;
-	}
 	display: flex;
 	gap: 1px;
 	max-width: 310px;
@@ -159,9 +25,13 @@ body {
 	border: 2px solid #999;
 	border-radius: 5px;
 	max-width: 330px;
+	min-height: 2em;
 	margin: 1em auto;
 	justify-content: center;
+	align-items: center;
+	gap: 0.5em;
 	background-color: white;
+	font-size: 1.5em;
 }
 
 button.letter {
@@ -175,15 +45,25 @@ button.letter {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-button.letter:hover,
-button.letter:focus {
+button.letter:disabled {
+	background-color: rosybrown;
+	color: gainsboro;
+	cursor: not-allowed;
+}
+
+button.letter:not(:disabled):hover,
+button.letter:not(:disabled):focus {
 	background-color: #f0c419;
 	color: black;
 }
 
-button.letter:active {
+button.letter:not(:disabled):active {
 	background-color: #d9f7f7;
 	color: black;
+}
+
+button:not(.disabled):focus {
+	outline: none;
 }
 
 .guess-char {
@@ -191,11 +71,6 @@ button.letter:active {
 	font-size: 1.5em;
 	width: 40px;
 	text-align: center;
-}
-
-.message {
-	padding: 12px 0px;
-	font-size: 1.5em;
 }
 
 .snowman-container {
@@ -244,7 +119,6 @@ button.letter:active {
 	top: 58px;
 	left: 90px;
 	z-index: 2;
-	visibility: hidden;
 }
 
 .puddle {
@@ -252,4 +126,35 @@ button.letter:active {
 	top: 270px;
 	left: 5px;
 	z-index: -2;
+}
+
+.hide {
+	visibility: hidden;
+}
+
+#actions button {
+	display: block;
+	margin: 0 auto;
+	padding: 0.75em 1.25em;
+	background-image: linear-gradient(
+		to right,
+		#02aab0 0%,
+		#00cdac 51%,
+		#02aab0 100%
+	);
+	background-size: 200% auto;
+	border-radius: 20px;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 0.9em;
+	cursor: pointer;
+	letter-spacing: 1px;
+	transition: all 0.5s ease;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#actions button:hover {
+	background-position: right center;
 }
